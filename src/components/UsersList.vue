@@ -35,7 +35,7 @@ export default {
   components: {
     ArrowSmallLeftIcon,
     PencilSquareIcon,
-  }
+  },
   methods: {
     getNameLetters(fullName) {
       const nameParts = fullName.split(" ");
