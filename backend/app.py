@@ -61,7 +61,7 @@ def add_user():
     return jsonify({'message': 'User added successfully!'}), 201
 
 
-# Endpoint to search user based on ID
+# Endpoint to search user based on email
 @app.route('/user/<int:user_id>', methods=['GET'])
 def get_user(user_email):
     user = User.query.get(user_email)
