@@ -62,7 +62,7 @@ def add_user():
 
 
 # Endpoint to search user based on email
-@app.route('/user/<int:user_id>', methods=['GET'])
+@app.route('/user/<int:user_email>', methods=['GET'])
 def get_user(user_email):
     user = User.query.get(user_email)
     if user:
