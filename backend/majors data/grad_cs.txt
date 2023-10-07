@@ -1,0 +1,7 @@
+Computer Science, MCS
+Computer Science, MS
+Computer Science, PhD
+Electrical & Computer Engineering, MEng
+Electrical & Computer Engineering, MS
+Electrical & Computer Engineering, PhD
+Bioinformatics, MS
