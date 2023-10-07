@@ -1,5 +1,4 @@
-<template>
-  <!-- <div class="w-full max-w-4xl border border-gray-200 rounded-xl p-5"> -->
+<template>  <!-- <div class="w-full max-w-4xl border border-gray-200 rounded-xl p-5"> -->
   <!-- <router-link :to="{ name: 'home' }"> -->
 
   <!-- </router-link> -->
