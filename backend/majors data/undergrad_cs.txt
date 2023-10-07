@@ -1,0 +1,19 @@
+Computer Science + Advertising, BS
+Computer Science + Animal Sciences, BS
+Computer Science + Anthropology, BSLAS
+Computer Science + Astronomy, BSLAS
+Computer Science + Bioengineering, BS
+Computer Science + Chemistry, BSLAS
+Computer Science + Crop Sciences, BS
+Computer Science + Economics, BSLAS
+Computer Science + Education, BS
+Computer Science + Geography & Geographic Information Science, BSLAS
+Computer Science + Linguistics, BSLAS
+Computer Science + Music, BS
+Computer Science + Physics, BS
+Computer Science + Philosophy, BSLAS
+Computer Science, BS
+Mathematics & Computer Science, BSLAS
+Computer Science & Music, BS
+Statistics & Computer Science, BSLAS
+Computer Engineering, BS
