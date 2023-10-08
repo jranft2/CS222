@@ -14,7 +14,7 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (next) => {
   // if (to.matched.some((record) => record.meta.requiresAuth)) {
   const store = useUserStore();
   store.refreshUser();
