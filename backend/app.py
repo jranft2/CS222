@@ -27,7 +27,7 @@ def log_request_info():
 
 @app.route('/')
 def index():
-    return '<h1>Hello from Flask!</h1>'
+    return '<h1>태완 너 quant 들어갈래?</h1>'
 
 #github endpoint
 @app.route('/github/<username>', methods=['GET'])
