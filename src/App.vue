@@ -15,7 +15,7 @@ import {ref }from 'vue'
 
 let profileVisible = ref(false);
 
-const profUser = ref("hello")
+const profUser = ref()
 
 const hideProfile = () => {
   profileVisible.value = false;

@@ -20,11 +20,11 @@
       </div>
     </div>
     <!-- </router-link> -->
-    <div
-      :style="{background: user.color, fontSize: '50px'}"
+    <div v-if="user"
+      :style="{background: user.color ?? 'defaultColor' , fontSize: '50px'}"
       class="h-48 w-48 items-center justify-center flex rounded-full mt-4 border-2 border-gray-200"
-    >{{ getNameLetters(user.name) }}</div>
-    <div class="text-3xl font-semibold mt-4">{{user.name}}</div>
+    >{{ getNameLetters(user.name ??'John Doe') }}</div>
+    <div v-if="user" class="text-3xl font-semibold mt-4">{{user.name ??'John Doe'}}</div>
     <div class="text-xl font-medium mt-2">[Major]</div>
 
     <div class="flex gap-2 items-center mt-2.5">
@@ -77,3 +77,4 @@ export default {
 </script>
 
 <style scoped></style>
+
