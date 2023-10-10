@@ -1,7 +1,4 @@
-<template>  <!-- <div class="w-full max-w-4xl border border-gray-200 rounded-xl p-5"> -->
-  <!-- <router-link :to="{ name: 'home' }"> -->
-
-  <!-- </router-link> -->
+<template>
   <div
     class="w-full flex border border-gray-200 p-10 rounded-lg overflow-y-auto"
   >
@@ -21,8 +18,6 @@
       </div>
     </div>
   </div>
-  <!-- <div></div> -->
-  <!-- </div> -->
 </template>
 
 <script>

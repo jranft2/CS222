@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import ProfileView from "../views/ProfileView.vue";
 
 import { useUserStore } from "../stores/user";
 
@@ -8,8 +9,13 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "Users",
       component: HomeView,
+    },
+    {
+      path: "/",
+      name: "Profile",
+      component: ProfileView,
     },
   ],
 });

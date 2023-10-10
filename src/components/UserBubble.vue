@@ -42,6 +42,15 @@
                 <div
                   @click="
                     close();
+                    openProfilePage();
+                  "
+                  class="flex w-full p-2 duration-150 rounded-md cursor-pointer hover:bg-gray-100"
+                >
+                  Settings
+                </div>
+                <div
+                  @click="
+                    close();
                     signOutUser();
                   "
                   class="flex w-full p-2 duration-150 rounded-md cursor-pointer hover:text-red-500 hover:bg-gray-100"
@@ -77,6 +86,9 @@ export default {
 
   methods: {
     ...mapActions(useUserStore, ["signInWithIllinois", "signOutUser"]),
+    openProfilePage() {
+      this.$router.push({ name: "Profile" });
+    },
   },
 };
 </script>
