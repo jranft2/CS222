@@ -14,18 +14,19 @@
 <script setup lang="ts">
 import UserProfile from "../components/UserProfile.vue";
 import UsersList from "../components/UsersList.vue";
-import UserBubble from "../components/UserBubble.vue";
+
 import { ref } from "vue";
 let profileVisible = ref(false);
 const profUser = ref();
+
 const hideProfile = () => {
   profileVisible.value = false;
   console.log(profileVisible);
 };
+
 const userSelected = (user: any) => {
   console.log(profileVisible);
   profileVisible.value = true;
   profUser.value = user;
-  // console.log(profUser.value.name);
 };
 </script>
