@@ -1,4 +1,5 @@
-<template>  <!-- <div class="w-full max-w-4xl border border-gray-200 rounded-xl p-5"> -->
+<template>
+  <!-- <div class="w-full max-w-4xl border border-gray-200 rounded-xl p-5"> -->
   <!-- <router-link :to="{ name: 'home' }"> -->
 
   <!-- </router-link> -->
@@ -6,18 +7,34 @@
     class="w-full flex border border-gray-200 p-10 rounded-lg overflow-y-auto"
   >
     <div class="flex gap-3 flex-col">
-      <div v-for="user of users"  @click="$emit('user-selected', user)" class="flex items-center gap-4">
-        <User :user="user"/>
+      <div class="flex gap-3 items-center -mt-2">
+        <MagnifyingGlassIcon class="h-6 w-6" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="block w-full shadow-none focus:border-0 focus:outline-none text-base h-8 border-none focus:ring-0 rounded-xl"
+          placeholder="Search people"
+        />
+      </div>
+      <div
+        v-for="user of users"
+        @click="$emit('user-selected', user)"
+        class="flex items-center gap-4"
+      >
+        <User :user="user" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import User from './User.vue'
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
+import User from "./User.vue";
 export default {
   components: {
     User,
+    MagnifyingGlassIcon,
   },
   data() {
     return {
