@@ -51,6 +51,7 @@ def get_leetcode_user(username):
         return jsonify({'error': 'User not found'}), 404
 
 
+
 # Endpoint to add a new user to the database
 @app.route('/add_user', methods=['POST'])
 def add_user():
