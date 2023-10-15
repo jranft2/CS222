@@ -1,56 +1,36 @@
 <template>
-  <!-- <div class="w-full max-w-4xl border border-gray-200 rounded-xl p-5"> -->
-  <!-- <router-link :to="{ name: 'home' }"> -->
-
-  <!-- </router-link> -->
   <div
     class="w-full flex border border-gray-200 p-10 rounded-lg overflow-y-auto"
   >
     <div class="flex gap-3 flex-col">
-      <div v-for="user of users" class="flex items-center gap-4">
-        <div
-          :style="{ background: user.color }"
-          class="h-12 w-12 items-center justify-center flex font-medium rounded-full"
-        >
-          {{ getNameLetters(user.name) }}
-        </div>
-
-        <div class="flex justify-center flex-col">
-          <div class="text-lg">{{ user.name }}</div>
-          <!-- <div class="text-base font-medium">[Major]</div> -->
-        </div>
+      <div class="flex gap-3 items-center -mt-2">
+        <MagnifyingGlassIcon class="h-6 w-6" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="block w-full shadow-none focus:border-0 focus:outline-none text-base h-8 border-none focus:ring-0 rounded-xl"
+          placeholder="Search people"
+        />
+      </div>
+      <div
+        v-for="user of users"
+        @click="$emit('user-selected', user)"
+        class="flex items-center gap-4 mt-1"
+      >
+        <User :user="user" />
       </div>
     </div>
   </div>
-  <!-- <div></div> -->
-  <!-- </div> -->
 </template>
 
 <script>
-import {
-  ArrowSmallLeftIcon,
-  PencilSquareIcon,
-} from "@heroicons/vue/24/outline";
-
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
+import User from "./User.vue";
 export default {
   components: {
-    ArrowSmallLeftIcon,
-    PencilSquareIcon,
-  },
-  methods: {
-    getNameLetters(fullName) {
-      const nameParts = fullName.split(" ");
-      const firstName = nameParts[0];
-      const lastName = nameParts.length > 1 ? nameParts[1] : null;
-
-      if (lastName) {
-        const firstInitial = firstName.charAt(0).toUpperCase();
-        const lastInitial = lastName.charAt(0).toUpperCase();
-        return firstInitial + lastInitial;
-      } else {
-        return firstName.slice(0, 2).toUpperCase();
-      }
-    },
+    User,
+    MagnifyingGlassIcon,
   },
   data() {
     return {
