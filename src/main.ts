@@ -4,9 +4,7 @@ import App from "./App.vue";
 import { initializeApp } from "firebase/app";
 import { createPinia } from "pinia";
 import router from "./router";
-import * as LR from "@uploadcare/blocks";
 
-LR.registerBlocks(LR);
 /* code from our Firebase console */
 const firebaseConfig = {
   apiKey: "AIzaSyDqJzb0IyYBYASxvtaws4e7tSHK59iRDSI",
