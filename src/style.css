@@ -11,3 +11,10 @@
   /* color: rgba(255, 255, 255, 0.87); */
   /* background-color: #242424; */
 }
+
+.my-config {
+  --darkmode: 0;
+  --h-accent: 223;
+  --s-accent: 100%;
+  --l-accent: 61%;
+}
