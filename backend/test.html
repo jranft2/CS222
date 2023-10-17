@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub and LeetCode User Info</title>
+</head>
+<body>
+
+<h1>Fetch User Info</h1>
+
+<label for="username">Username:</label>
+<input type="text" id="username">
+
+<button onclick="fetchUserInfo('github')">Fetch GitHub Info</button>
+<button onclick="fetchUserInfo('leetcode')">Fetch LeetCode Info</button>
+
+<h2>Result:</h2>
+<pre id="result"></pre>
+
+<script>
+    function fetchUserInfo(platform) {
+        const username = document.getElementById("username").value;
+        fetch(`http://0.0.0.0:8080/${platform}/${username}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                document.getElementById("result").textContent = "Error fetching data.";
+            });
+    }
+</script>
+
+</body>
+</html>
