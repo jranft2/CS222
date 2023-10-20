@@ -1,4 +1,3 @@
-<script setup lang="ts"></script>
 <template>
   <div class="border border-gray-200 p-10 rounded-lg overflow-y-auto">
     <img
@@ -69,7 +68,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import uiButton from "../ui/uiButton.vue";
 import uiChip from "../ui/uiChip.vue";
 import { uploadFile } from "@uploadcare/upload-client";
@@ -92,7 +91,7 @@ export default {
       this.classInputValue = "";
     },
 
-    async uploadFile(fileData: any) {
+    async uploadFile(fileData) {
       console.log("uploading");
       console.log(fileData);
       const result = await uploadFile(fileData[0], {
