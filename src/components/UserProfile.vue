@@ -27,14 +27,7 @@
     <div v-if="user" class="text-3xl font-semibold mt-4">{{user.name ??'John Doe'}}</div>
     <div class="text-xl font-medium mt-2">[Major]</div>
 
-    <div class="flex gap-2 items-center mt-2.5">
-      <div
-        v-for="x of [1, 2, 3]"
-        class="text-md font-md mt-2 bg-purple-200 rounded-full px-2.5 py-1 w-min"
-      >
-        [Tag{{ x }}]
-      </div>
-    </div>
+    <Tags :user="user" />
   </div>
   <!-- <div></div> -->
   <!-- </div> -->
@@ -45,11 +38,13 @@ import {
   ArrowSmallLeftIcon,
   PencilSquareIcon,
 } from "@heroicons/vue/24/outline";
+import Tags from "./Tags.vue";
 
 export default {
   components: {
     ArrowSmallLeftIcon,
     PencilSquareIcon,
+    Tags,
   },
   props: {
     user:Object,
