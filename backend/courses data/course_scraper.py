@@ -17,12 +17,12 @@ def scrape():
             for course in soup.find_all('course'):
                 courses[course.attrs['id']] = course.text
             time.sleep(sleep_time)
-    fields = ['Course Number', 'Course Name']
+    fields = ['Subject', 'Course Number', 'Course Name']
     with open('./backend/courses data/cs_courses.csv', 'w') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow(fields)
         for course, name in courses.items():
-            csv_writer.writerow(['CS ' + course, name])
+            csv_writer.writerow(['CS', 'CS ' + course, name])
 
 if __name__ == '__main__':
     scrape()
