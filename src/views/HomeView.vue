@@ -1,13 +1,11 @@
 <template>
-  <div class="flex justify-center">
-    <div class="flex w-full gap-4 mt-3 items-start">
-      <UsersList @user-selected="userSelected" />
-      <UserProfile
-        @hide-profile="hideProfile"
-        v-show="profileVisible"
-        :user="profUser"
-      />
-    </div>
+  <div class="flex w-full gap-4 items-start">
+    <UsersList @user-selected="userSelected" />
+    <UserProfile
+      @hide-profile="hideProfile"
+      v-show="profileVisible"
+      :user="profUser"
+    />
   </div>
 </template>
 
