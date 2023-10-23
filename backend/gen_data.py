@@ -90,14 +90,18 @@ def clean() -> pd.DataFrame:
     students['PFP'] = 'https://studentengagement.illinois.edu/about/staff/images/BlockI.png'
     return students
 
-# generates fake relational data (email & major)
+# generates fake relational data (email & major, degree type)
 def gen_majors() -> pd.DataFrame:
     students = pd.read_csv('./backend/majors data/fake_cs_students.csv')
     students = students.drop('Name', axis='columns').drop('Bio', axis='columns').drop('PFP', axis='columns')
     for i in tqdm(range(4000)):
-        students.loc[i, 'Major'] = random.choice(ug_cs)
+        major, degree = random.choice(ug_cs).split(',')
+        students.loc[i, 'Major Name'] = major
+        students.loc[i, 'Degree Type'] = degree
     for i in tqdm(range(4000, 6000)):
-        students.loc[i, 'Major'] = random.choice(g_cs)
+        major, degree = random.choice(ug_cs).split(',')
+        students.loc[i, 'Major Name'] = major
+        students.loc[i, 'Degree Type'] = degree
     return students
 
 def main():
