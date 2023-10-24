@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ProfileView from "../views/ProfileView.vue";
+import ClassView from "../views/ClassView.vue";
 
 import { useUserStore } from "../stores/user";
 
@@ -16,6 +17,11 @@ const router = createRouter({
       path: "/profile",
       name: "Profile",
       component: ProfileView,
+    },
+    {
+      path: "/class",
+      name: "Explore Class",
+      component: ClassView,
     },
   ],
 });
