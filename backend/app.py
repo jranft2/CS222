@@ -52,6 +52,7 @@ def get_leetcode_user(username):
 
 
 
+
 # Endpoint to add a new user to the database
 @app.route('/add_user', methods=['POST'])
 def add_user():
