@@ -46,17 +46,17 @@ def get_github_user(username):
 @app.route('/reateuser', methods=['POST'])
 def createuser():
     student_data = {
-        'netid_email':'aaaaa@gmail.com'
-        'name': 'foo',
-        'github': '',
-        'leetcode': 'fff',
-        'bio': 'ppp',
-        'pfp_url': 'daflkj://'
+        'netid_email': request.args.get("netid_email"),
+        'name': request.args.get("name"),
+        'github': request.args.get("github"),
+        'leetcode': request.args.get("leetcode"),
+        'bio': request.args.get("bio"),
+        'pfp_url': request.args.get("pfp_url"),
     }
 
-        # If the user doesn't exist, insert a new record
-        new_student = Student(**student_data)
-        db.session.add(new_student)
+    # If the user doesn't exist, insert a new record
+    new_student = Student(**student_data)
+    db.session.add(new_student)
 
     db.session.commit()
     db.session.close()
