@@ -5,18 +5,20 @@ import requests
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # SQLite database file
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://Josephjj224:0j2VRcnTCPHv@ep-summer-dream-42168815.us-east-2.aws.neon.tech/CS222-91' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 db = SQLAlchemy(app)
 
 
 # User Model for Database
-class User(db.Model):
-    email = db.Column(db.String(120), primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
-    major = db.Column(db.String(120), nullable=False)
-
+class Student(db.Model):
+    name = db.Column(db.String(120), primary_key=True)
+    netid_email = db.Column(db.String(80), nullable=False, unique=True)
+    github = db.Column(db.String(120), nullable=True)
+    leetcode = db.Column(db.String(120), nullable=True)
+    bio = db.Column(db.String(120), nullable=True)
+    pfp_url = db.Column(db.String(120), nullable=True)
 
 # Middleware to log each request
 @app.before_request
@@ -30,7 +32,7 @@ def index():
     return '<h1>Hello from Flask!</h1>'
 
 #github endpoint
-@app.route('/github/<username>', methods=['GET'])
+@app.route('/github/<username>', methods=['POST'])
 def get_github_user(username):
     url = f'https://api.github.com/users/{username}'
     response = requests.get(url)
@@ -39,6 +41,29 @@ def get_github_user(username):
     else:
         return jsonify({'error': 'User not found'}), 404
     
+
+# save user details endpoint  
+@app.route('/reateuser', methods=['POST'])
+def createuser():
+    student_data = {
+        'netid_email':'aaaaa@gmail.com'
+        'name': 'foo',
+        'github': '',
+        'leetcode': 'fff',
+        'bio': 'ppp',
+        'pfp_url': 'daflkj://'
+    }
+
+        # If the user doesn't exist, insert a new record
+        new_student = Student(**student_data)
+        db.session.add(new_student)
+
+    db.session.commit()
+    db.session.close()
+
+
+    return jsonify({'status': 'User saved'}), 201
+
 
 # leetcode endpoint  
 @app.route('/leetcode/<username>', methods=['GET'])
@@ -53,7 +78,7 @@ def get_leetcode_user(username):
 
 
 # Endpoint to add a new user to the database
-@app.route('/add_user', methods=['POST'])
+@app.route('/add_user', methods=['GET'])
 def add_user():
     data = request.get_json()
     new_user = User(name=data['name'], major=data['major'])
