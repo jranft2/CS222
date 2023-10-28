@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ProfileView from "../views/ProfileView.vue";
-import ClassView from "../views/ClassView.vue";
+import ClassView from "../views/Classview.vue";
 
 import { useUserStore } from "../stores/user";
 
