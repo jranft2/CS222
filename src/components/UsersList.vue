@@ -16,7 +16,7 @@
       <div
         v-for="user of users"
         @click="$emit('user-selected', user)"
-        class="flex items-center gap-4 mt-1"
+        class="flex items-center gap-4 mt-1 cursor-pointer"
       >
         <User :user="user" />
       </div>
