@@ -67,6 +67,7 @@ def get_leetcode_user(username):
         return jsonify({'error': 'User not found'}), 404
 
 
+
 #student table turn in to JSON 
 @app.route('/students', methods=['GET'])
 def get_students():

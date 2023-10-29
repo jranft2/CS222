@@ -1,0 +1,250 @@
+Accountancy, MAS
+Accountancy, MS
+Accountancy, PhD
+Actuarial Science, MS
+Advertising, MS
+Aerospace Engineering, MS
+Aerospace Engineering, PhD
+African Studies, MA
+Agricultural & Applied Economics, MAAE
+Agricultural & Applied Economics, MS
+Agricultural & Applied Economics, PhD
+Agricultural & Biological Engineering, MS
+Agricultural & Biological Engineering, PhD
+Agricultural Leadership, Education, & Communications, MS
+Animal Sciences, MANSC
+Animal Sciences, MS
+Animal Sciences, PhD
+Anthropology, MA
+Anthropology, PhD
+Applied Mathematics, MS
+Architectural Studies, MS (post professional)
+Architecture, MARCH (Limited Standing and Professional concentrations)
+Architecture, PhD
+Art & Design, MFA
+Art Education, EdM
+Art Education, MA
+Art Education, PhD
+Art History, MA
+Art History, PhD
+Astronomy, MS
+Astronomy, PhD
+Atmospheric Sciences, MS
+Atmospheric Sciences, PhD
+Audiology, AuD
+Biochemistry, MS
+Biochemistry, PhD
+Bioengineering, MENG
+Bioengineering, MS
+Bioengineering, PhD
+Biology, MS
+Biology, PhD
+Biomedical Image Computing, MS
+Biophysics & Quantitative Biology, MS
+Biophysics & Quantitative Biology, PhD
+Bioprocessing & Bioenergy, MS - Professional Science Master’s
+Business Administration, MBA (Online iMBA)
+Business Administration, MS (see Management, MS)
+Business Administration, PhD
+Business Analytics, MS
+Cell and Developmental Biology, MS
+Cell and Developmental Biology, PhD
+Chemical Engineering, MS
+Chemical Engineering, PhD
+Chemistry, MS
+Chemistry, PhD
+Civil Engineering, MS
+Civil Engineering, PhD
+Classical Philology, PhD
+Classics, MA
+Communication, MA
+Communication, PhD
+Second Language Acquisition & Teacher Education
+Communications & Media, PhD
+Community Health, MS
+Community Health, PhD
+Comparative Literature, MA
+Comparative Literature, PhD
+Creative Writing, MFA
+Crop Sciences, MS
+Crop Sciences, PhD
+Curriculum & Instruction, CAS
+Curriculum & Instruction, EdD
+Curriculum & Instruction, EdM
+Curriculum & Instruction, MA
+Curriculum & Instruction, MS
+Curriculum & Instruction, PhD
+CyberGIS and Geospatial Data Science, MS
+Dance, MFA
+Early Childhood Education, EdM
+East Asian Languages & Cultures, MA
+East Asian Languages & Cultures, PhD
+Ecology, Evolution, & Conservation Biology, MS
+Ecology, Evolution, & Conservation Biology, PHD
+Economics, MS
+Economics, PhD
+Education Policy, Organization & Leadership, CAS
+Education Policy, Organization & Leadership, EdD
+Education Policy, Organization & Leadership, EdM
+Education Policy, Organization & Leadership, MA
+Education Policy, Organization & Leadership, PhD
+Educational Psychology, EdM
+Educational Psychology, MA
+Educational Psychology, MS
+Educational Psychology, PhD
+Elementary Education, EdM
+Engineering, MENG
+Engineering Technology and Management for Agricultural Systems, MS
+Engineering Technology and Management for Agricultural Systems, MS - Professional Science Masters
+English, MA
+English, PhD
+Entomology, MS
+Entomology, PhD
+Environmental Engineering in Civil Engineering, MS
+Environmental Engineering in Civil Engineering, PhD
+Environmental Geology, MS
+Epidemiology, MPH
+European Union Studies, MA
+Finance, MS
+Finance, PhD
+Financial Engineering, MS
+Food Science & Human Nutrition, MS
+Food Science & Human Nutrition, MS - Professional Science Master’s
+Food Science & Human Nutrition, PhD
+French, MA
+French, PhD
+Geography, MA
+Geography, MS
+Geography, PhD
+Geology, MS
+Geology, PhD
+German, MA
+German, PhD
+Health Administration, MHA
+Health Communication, MS
+Health Technology, MS
+History, MA
+History, PhD
+Human Development & Family Studies, MS
+Human Development & Family Studies, PhD
+Human Resources & Industrial Relations, MHRIR
+Human Resources & Industrial Relations, PhD
+Industrial Design, MDes
+Industrial Engineering, MS
+Industrial Engineering, PhD
+Informatics, PhD
+Information Management, MS
+Information Sciences, PhD
+Integrative Biology, MS
+Italian, MA
+Italian, PhD
+Romance Linguistics
+Journalism, MS
+Kinesiology, MS
+Kinesiology, PhD
+Landscape Architecture, MLA
+Landscape Architecture, PhD
+Latin American Studies, MA
+Law, JSD
+Law, LLM
+Law, MSL
+Library & Information Science, CAS
+Library & Information Science, MS
+Linguistics, MA
+Linguistics, PhD
+Livestock Systems Health, MVS
+Management, MS
+Materials Engineering, MENG
+Materials Science & Engineering, MS
+Materials Science & Engineering, PhD
+Mathematics, MS
+Mathematics, PhD
+Mechanical Engineering, MENG
+Mechanical Engineering, MS
+Mechanical Engineering, PhD
+Mental Health Counseling, MS
+Microbiology, MS
+Microbiology, PhD
+Molecular & Cellular Biology, MS
+Molecular & Integrative Physiology, MS
+Molecular & Integrative Physiology, PhD
+Music, AD
+Music, DMA
+Choral Music
+Music, MMUS
+Music Education, MME
+Music Education, PhD
+Musicology, PhD
+Natural Resources & Environmental Sciences, MS
+Natural Resources & Environmental Sciences, PhD
+Neuroscience, PhD
+Nuclear, Plasma, & Radiological Engineering, MS
+Nuclear, Plasma, & Radiological Engineering, PhD
+Nutritional Sciences, MS
+Nutritional Sciences, PhD
+Pathobiology, MS
+Pathobiology, PhD
+Philosophy, MA
+Philosophy, PhD
+Physics, MS
+Physics, PhD
+Plant Biology, MS
+Plant Biology, PhD
+Political Science, MA
+Political Science, PhD
+Portuguese, MA
+Portuguese, PhD
+Predictive Analytics and Risk Management, MS
+Psychological Science, MS
+Psychology, MS
+Psychology, PhD
+Public Health, MPH
+Recreation, Sport & Tourism, MS
+Recreation, Sport & Tourism, PhD
+Regional Planning, PhD
+Rehabilitation, MS
+Religion, MA
+Russian, East European, & Eurasian Studies, MA
+Schools Specialization, CAS
+Secondary Education, EdM
+Slavic Languages & Literatures, MA
+Slavic Languages & Literatures, PhD
+Social Work, PhD
+Sociology, MA
+Sociology, PhD
+South Asian & Middle Eastern Studies, MA
+Spanish, MA
+Spanish, PhD
+Special Education, EdM
+Special Education, MS
+Special Education, PhD
+Speech & Hearing Science, Audiology - See Audiology, AuD
+Speech & Hearing Science, MA
+Speech & Hearing Science, PhD
+Statistics, MS
+Statistics, PhD
+Strategic Brand Communication, MS
+Sustainable Urban Design, MSUD
+Sustainable Urban Management, MS
+Systems & Entrepreneurial Engineering, MS
+Systems & Entrepreneurial Engineering, PhD
+Teaching of Biological Science, MS
+Teaching of Chemistry, MS
+Teaching of English as a Second Language, MA
+Teaching of Latin, MA
+Teaching of Mathematics, MS
+Teaching of Physics, MS
+Technology Management, MS
+Theatre, MA
+Theatre, MFA
+Theatre, PhD
+Theoretical and Applied Mechanics, MS
+Theoretical & Applied Mechanics, PhD
+Translation & Interpreting, MA
+Urban Planning, MUP
+VMS - Comparative Biosciences, MS
+VMS - Comparative Biosciences, PhD
+VMS- Pathobiology, MS
+VMS - Pathobiology, PhD
+VMS - Veterinary Clinical Medicine, MS
+Weather and Climate Risk and Analytics, MS
