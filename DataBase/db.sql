@@ -1,3 +1,5 @@
+
+-- this dose not effect on other code 
 -- Major Table
 CREATE TABLE Major (
     Name VARCHAR(255) PRIMARY KEY,
