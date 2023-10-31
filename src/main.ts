@@ -3,6 +3,7 @@ import "./style.css";
 import App from "./App.vue";
 import { initializeApp } from "firebase/app";
 import { createPinia } from "pinia";
+import 'font-awesome/css/font-awesome.css';
 import router from "./router";
 
 /* code from our Firebase console */

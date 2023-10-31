@@ -1,13 +1,13 @@
 <template>
-    <div class="flex gap-2 items-center mt-2.5">
-        <div class="text-md font-md mt-2 bg-purple-200 rounded-full px-2.5 py-1 w-min">
+    <div class="container ">
+        <div class="tag">
             <LeetCode :user="user"/>
         </div>
-        <div class="text-md font-md mt-2 bg-purple-200 rounded-full px-2.5 py-1 w-min">
-        [Github]
+        <div class="tag">
+            <i class="fa-brands fa-github"></i>Github
         </div>
-        <div class="text-md font-md mt-2 bg-purple-200 rounded-full px-2.5 py-1 w-min">
-        [Courses]
+        <div class="tag">
+            <i class="fa-sharp fa-solid fa-screen-users"></i>Courses 
         </div>
     </div> 
 </template>
@@ -24,4 +24,20 @@ export default {
   },
 }
 </script>
-<style scoped></style>
+<style>
+.container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;  
+    align-items: center; 
+    margin-top: 2.5rem; 
+}
+.tag {
+    margin: 5px auto;
+    overflow: auto;
+    border: 1px solid #e2e8f0; 
+    padding: 10px; 
+    border-radius: 8px;
+
+}
+</style>

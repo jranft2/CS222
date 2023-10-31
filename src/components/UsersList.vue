@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex border border-gray-200 p-10 rounded-lg overflow-y-auto"
+    class="w-1/2 flex border border-gray-200 p-10 rounded-lg overflow-y-auto"
   >
     <div class="flex gap-3 flex-col">
       <div class="flex gap-3 items-center -mt-2">
