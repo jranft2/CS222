@@ -104,6 +104,35 @@ def get_studies():
 
 
 
+#search by the name
+@app.route('/search', methods=['GET'])
+def search_students():
+    search_query = request.args.get('query', '') 
+    matching_students = Student.query.filter(Student.name.ilike(f'%{search_query}%')).all()
+    results = [{
+        'netid_email': student.netid_email,
+        'name': student.name,
+        'bio': student.bio,
+        'pfp_url': student.pfp_url,
+        'leetcode': student.leetcode,
+        'github': student.github
+    } for student in matching_students]   
+    return jsonify(results)
+
+
+@app.route('/search_by_course', methods=['GET'])
+def search_by_course():
+
+    course_number_query = request.args.get('course_number', '')
+    enrollments = Enroll.query.filter(Enroll.course_number.ilike(f'%{course_number_query}%')).all()
+    enrollments_list = [
+        {'netid_email': enrollment.netid_email, 'course_number': enrollment.course_number}
+        for enrollment in enrollments
+    ]
+    return jsonify(enrollments_list)
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port='8080')
