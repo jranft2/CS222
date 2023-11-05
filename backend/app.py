@@ -1,30 +1,46 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy 
 import requests
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # SQLite database file
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://Josephjj224:0j2VRcnTCPHv@ep-summer-dream-42168815.us-east-2.aws.neon.tech/CS222-91'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 db = SQLAlchemy(app)
 
 
-# User Model for Database
-class User(db.Model):
-    email = db.Column(db.String(120), primary_key=True)
+#student table def
+class Student(db.Model):
+    netid_email = db.Column(db.String(120), primary_key=True, nullable=False, unique=True)
     name = db.Column(db.String(80), nullable=False)
-    major = db.Column(db.String(120), nullable=False)
+    bio = db.Column(db.Text, nullable=True)
+    pfp_url = db.Column(db.String(255), nullable=True)
+    leetcode = db.Column(db.String(80), nullable=True)
+    github = db.Column(db.String(80), nullable=True)
 
 
-# Middleware to log each request
-@app.before_request
-def log_request_info():
-    print(f'Headers: {request.headers}')
-    print(f'Body: {request.get_data()}')
+class Enroll(db.Model):
+    netid_email = db.Column(db.String(255), db.ForeignKey('student.netid_email'), primary_key=True)
+    course_number = db.Column(db.String(255), db.ForeignKey('course.number'), primary_key=True)
+
+class Course(db.Model):
+    number = db.Column(db.String(255), primary_key=True)
+    name = db.Column(db.String(255))
+
+class Major(db.Model):
+    name = db.Column(db.String(255),primary_key = True)
+    type_of_degree = db.Column(db.String(255))
+
+class Studies(db.Model):
+    netid_email	=db.Column(db.String(255),db.ForeignKey('student.netid_email'),primary_key = True)
+    major_name=db.Column(db.String(255),db.ForeignKey('major.name'),primary_key = True)
+    degree_type=db.Column(db.String(255),db.ForeignKey('major.degree_type'),primary_key = True)
 
 
+
+    
 @app.route('/')
 def index():
     return '<h1>Hello from Flask!</h1>'
@@ -53,6 +69,7 @@ def get_leetcode_user(username):
 
 
 
+
 # Endpoint to add a new user to the database
 @app.route('/add_user', methods=['POST'])
 def add_user():
@@ -61,17 +78,75 @@ def add_user():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User added successfully!'}), 201
+  
+  
+  
+  
+  
+#student table turn in to JSON 
+@app.route('/students', methods=['GET'])
+def get_students():
+    students = Student.query.all()
+    return jsonify([{'name': student.name, 'netid_email': student.netid_email, 'bio': student.bio, 'pfp_url': student.pfp_url, 'leetcode': student.leetcode, 'github': student.github} for student in students])
 
 
-# Endpoint to search user based on email
-@app.route('/user/<int:user_email>', methods=['GET'])
-def get_user(user_email):
-    user = User.query.get(user_email)
-    if user:
-        return jsonify({'UIN': user.email, 'name': user.name, 'major': user.major})
-    else:
-        return jsonify({'error': 'User not found'}), 404
-    
+
+
+#enroll table turn in to JSON 
+@app.route('/enrolls', methods=['GET'])
+def get_enroll():
+    enroll_list = Enroll.query.all()
+    return jsonify([{'netid_email': e.netid_email, 'course_number': e.course_number} for e in enroll_list])
+
+#course table turn in to JSON 
+@app.route('/courses', methods=['GET'])
+def get_courses():
+    Courses = Course.query.all()
+    return jsonify([{'course_number': c.number, 'course_name': c.name} for c in Courses])
+
+#major table turn in to JSON 
+@app.route('/majors', methods=['GET'])
+def get_majors():
+    majors = Major.query.all()
+    return jsonify([{'major': m.name, 'degree type': m.type_of_degree} for m in majors])
+
+#Studies table turn in to JSON 
+@app.route('/studies', methods=['GET'])
+def get_studies():
+    Studie = Studies.query.all()
+    return jsonify([{'netid_email': st.netid_email, 'major_name': st.major_name, 'degree_type': st.degree_type } for st in Studie])
+
+
+
+
+
+#search by the name
+@app.route('/search', methods=['GET'])
+def search_students():
+    search_query = request.args.get('query', '') 
+    matching_students = Student.query.filter(Student.name.ilike(f'%{search_query}%')).all()
+    results = [{
+        'netid_email': student.netid_email,
+        'name': student.name,
+        'bio': student.bio,
+        'pfp_url': student.pfp_url,
+        'leetcode': student.leetcode,
+        'github': student.github
+    } for student in matching_students]   
+    return jsonify(results)
+
+#search by the course number
+@app.route('/search_by_course', methods=['GET'])
+def search_by_course():
+
+    course_number_query = request.args.get('course_number', '')
+    enrollments = Enroll.query.filter(Enroll.course_number.ilike(f'%{course_number_query}%')).all()
+    enrollments_list = [
+        {'netid_email': enrollment.netid_email, 'course_number': enrollment.course_number}
+        for enrollment in enrollments
+    ]
+    return jsonify(enrollments_list)
+
 
 
 
