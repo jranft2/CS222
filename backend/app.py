@@ -89,6 +89,7 @@ def get_leetcode_user(username):
 
 
 
+
 # Endpoint to search user based on email
 @app.route('/user/<int:user_email>', methods=['GET'])
 def get_user(user_email):
@@ -98,11 +99,27 @@ def get_user(user_email):
     else:
         return jsonify({'error': 'User not found'}), 404
     
+
+
+# Endpoint to add a new user to the database
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    data = request.get_json()
+    new_user = User(name=data['name'], major=data['major'])
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message': 'User added successfully!'}), 201
+  
+  
+  
+  
+  
 #student table turn in to JSON 
 @app.route('/students', methods=['GET'])
 def get_students():
     students = Student.query.all()
     return jsonify([{'name': student.name, 'netid_email': student.netid_email, 'bio': student.bio, 'pfp_url': student.pfp_url, 'leetcode': student.leetcode, 'github': student.github} for student in students])
+
 
 
 #enroll table turn in to JSON 
@@ -128,6 +145,37 @@ def get_majors():
 def get_studies():
     Studie = Studies.query.all()
     return jsonify([{'netid_email': st.netid_email, 'major_name': st.major_name, 'degree_type': st.degree_type } for st in Studie])
+
+
+
+#search by the name
+@app.route('/search', methods=['GET'])
+def search_students():
+    search_query = request.args.get('query', '') 
+    matching_students = Student.query.filter(Student.name.ilike(f'%{search_query}%')).all()
+    results = [{
+        'netid_email': student.netid_email,
+        'name': student.name,
+        'bio': student.bio,
+        'pfp_url': student.pfp_url,
+        'leetcode': student.leetcode,
+        'github': student.github
+    } for student in matching_students]   
+    return jsonify(results)
+
+#search by the course number
+@app.route('/search_by_course', methods=['GET'])
+def search_by_course():
+
+    course_number_query = request.args.get('course_number', '')
+    enrollments = Enroll.query.filter(Enroll.course_number.ilike(f'%{course_number_query}%')).all()
+    enrollments_list = [
+        {'netid_email': enrollment.netid_email, 'course_number': enrollment.course_number}
+        for enrollment in enrollments
+    ]
+    return jsonify(enrollments_list)
+
+
 
 
 if __name__ == '__main__':
