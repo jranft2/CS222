@@ -68,11 +68,27 @@ def get_leetcode_user(username):
 
 
 
+
+
+# Endpoint to add a new user to the database
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    data = request.get_json()
+    new_user = User(name=data['name'], major=data['major'])
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message': 'User added successfully!'}), 201
+  
+  
+  
+  
+  
 #student table turn in to JSON 
 @app.route('/students', methods=['GET'])
 def get_students():
     students = Student.query.all()
     return jsonify([{'name': student.name, 'netid_email': student.netid_email, 'bio': student.bio, 'pfp_url': student.pfp_url, 'leetcode': student.leetcode, 'github': student.github} for student in students])
+
 
 
 
@@ -119,7 +135,7 @@ def search_students():
     } for student in matching_students]   
     return jsonify(results)
 
-
+#search by the course number
 @app.route('/search_by_course', methods=['GET'])
 def search_by_course():
 
