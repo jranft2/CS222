@@ -43,15 +43,15 @@ def get_github_user(username):
     
 
 # save user details endpoint  
-@app.route('/reateuser', methods=['POST'])
+@app.route('/save-user-details', methods=['POST'])
 def createuser():
     student_data = {
-        'netid_email': request.args.get("netid_email"),
-        'name': request.args.get("name"),
-        'github': request.args.get("github"),
-        'leetcode': request.args.get("leetcode"),
-        'bio': request.args.get("bio"),
-        'pfp_url': request.args.get("pfp_url"),
+        'netid_email': request.headers.get("netidemail") or '',
+        'name': request.headers.get("name") or '',
+        'github': request.headers.get("github") or '',
+        'leetcode': request.headers.get("leetcode") or '',
+        'bio': request.headers.get("bio") or '',
+        'pfp_url': request.headers.get("pfpurl")or '',
     }
 
     # If the user doesn't exist, insert a new record
@@ -60,7 +60,6 @@ def createuser():
 
     db.session.commit()
     db.session.close()
-
 
     return jsonify({'status': 'User saved'}), 201
 
@@ -75,16 +74,6 @@ def get_leetcode_user(username):
     else:
         return jsonify({'error': 'User not found'}), 404
 
-
-
-# Endpoint to add a new user to the database
-@app.route('/add_user', methods=['GET'])
-def add_user():
-    data = request.get_json()
-    new_user = User(name=data['name'], major=data['major'])
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify({'message': 'User added successfully!'}), 201
 
 
 # Endpoint to search user based on email
