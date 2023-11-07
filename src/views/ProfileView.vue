@@ -28,15 +28,42 @@
         <label
           for="default-input"
           class="block mb-2 text-sm font-medium text-gray-900"
-          >Display Name</label
-        >
+          >Github Username
+        </label>
         <input
+          v-model="githubValue"
           type="text"
           id="default-input"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
       </div>
-      <div>
+      <div class="mb-6 w-64">
+        <label
+          for="default-input"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Leetcode Username</label
+        >
+        <input
+          v-model="leetcodeValue"
+          type="text"
+          id="default-input"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+      </div>
+      <div class="mb-6 w-64">
+        <label
+          for="default-input"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Display Name</label
+        >
+        <input
+          v-model="nameValue"
+          type="text"
+          id="default-input"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+      </div>
+      <!-- <div>
         <label
           for="default-input"
           class="block mb-2 text-sm font-medium text-gray-900"
@@ -59,11 +86,11 @@
             :key="index"
             :label="item"
           ></uiChip>
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
     </div>
     <div class="mt-8">
-      <uiButton color="blue"> Save </uiButton>
+      <uiButton color="blue" @click="saveUser()"> Save </uiButton>
     </div>
   </div>
 </template>
@@ -72,6 +99,7 @@
 import uiButton from "../ui/uiButton.vue";
 import uiChip from "../ui/uiChip.vue";
 import { uploadFile } from "@uploadcare/upload-client";
+import { useUserStore } from "../stores/user";
 
 export default {
   components: {
@@ -83,14 +111,77 @@ export default {
       profileUrl: "",
       chipItems: ["Tag 1", "Tag 2", "Tag 3"],
       classInputValue: "",
+      nameValue: "asdf",
+      leetcodeValue: "",
+      githubValue: "",
     };
   },
+
+  async mounted() {
+    console.log("mounting");
+    const store = useUserStore();
+    const user = await store.getCurrentUser();
+
+    var myHeaders = new Headers();
+    myHeaders.append("netidemail", user.email);
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("http://127.0.0.1:8080/get_preferences", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        const data = JSON.parse(result);
+        this.profileUrl = data.pfp_url;
+        this.nameValue = data.name;
+        this.leetcodeValue = data.leetcode;
+        this.githubValue = data.github;
+      })
+      .catch((error) => console.log("error", error));
+
+    //       {
+    //   "bio": "bio_val",
+    //   "github": "josephshepin",
+    //   "leetcode": "jshepin",
+    //   "name": "Joey",
+    //   "netid_email": "jshepin2@illinois.edu",
+    //   "pfp_url": "https://ucarecdn.com/4de6a8b6-700b-4098-b4a5-218f66fb7dbc/"
+    // }
+  },
+
   methods: {
     addClass() {
       this.chipItems.push(this.classInputValue);
       this.classInputValue = "";
     },
 
+    async saveUser() {
+      const store = useUserStore();
+      const user = await store.getCurrentUser();
+
+      console.log(user.email);
+      var myHeaders = new Headers();
+      myHeaders.append("netidemail", user.email);
+      myHeaders.append("name", this.nameValue);
+      myHeaders.append("github", this.githubValue);
+      myHeaders.append("leetcode", this.leetcodeValue);
+      myHeaders.append("bio", "bio_val");
+      myHeaders.append("pfpurl", this.profileUrl);
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch("http://127.0.0.1:8080/save-user-details", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    },
     async uploadFile(fileData) {
       console.log("uploading");
       console.log(fileData);

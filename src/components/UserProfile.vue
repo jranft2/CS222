@@ -6,7 +6,8 @@
       <div
         class="duration-75 -mt-1 -ml-1 border border-gray-200 cursor-pointer self-star sm:w-10 w-11 sm:h-10 h-11 hover:border-slate-300 rounded-xl"
       >
-        <ArrowSmallLeftIcon @click="goBack()"
+        <ArrowSmallLeftIcon
+          @click="goBack()"
           class="p-2 duration-75 transform shrink-0 hover:scale-110"
         />
       </div>
@@ -20,11 +21,16 @@
       </div>
     </div>
     <!-- </router-link> -->
-    <div v-if="user"
-      :style="{background: user.color ?? 'defaultColor' , fontSize: '50px'}"
+    <div
+      v-if="user"
+      :style="{ background: user.color ?? 'defaultColor', fontSize: '50px' }"
       class="h-48 w-48 items-center justify-center flex rounded-full mt-4 border-2 border-gray-200"
-    >{{ getNameLetters(user.name ??'John Doe') }}</div>
-    <div v-if="user" class="text-3xl font-semibold mt-4">{{user.name ??'John Doe'}}</div>
+    >
+      {{ getNameLetters(user.name ?? "John Doe") }}
+    </div>
+    <div v-if="user" class="text-3xl font-semibold mt-4">
+      {{ user.name ?? "John Doe" }}
+    </div>
     <div class="text-xl font-medium mt-2">[Major]</div>
 
     <Tags :user="user" />
@@ -39,7 +45,7 @@ import {
   PencilSquareIcon,
 } from "@heroicons/vue/24/outline";
 import Tags from "./Tags.vue";
-
+import { useUserStore } from "../stores/user";
 export default {
   components: {
     ArrowSmallLeftIcon,
@@ -47,11 +53,11 @@ export default {
     Tags,
   },
   props: {
-    user:Object,
+    user: Object,
   },
   methods: {
     goBack() {
-      this.$emit("hideProfile")
+      this.$emit("hideProfile");
     },
     getNameLetters(fullName) {
       const nameParts = fullName.split(" ");
@@ -66,10 +72,8 @@ export default {
         return firstName.slice(0, 2).toUpperCase();
       }
     },
-  }
+  },
 };
-
 </script>
 
 <style scoped></style>
-
