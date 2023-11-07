@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy 
 import requests
-
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://Josephjj224:0j2VRcnTCPHv@ep-summer-dream-42168815.us-east-2.aws.neon.tech/CS222-91' 
@@ -67,14 +67,30 @@ def createuser():
         'pfp_url': request.headers.get("pfpurl")or '',
     }
 
-    # If the user doesn't exist, insert a new record
-    new_student = Student(**student_data)
-    db.session.add(new_student)
 
-    db.session.commit()
-    db.session.close()
+    existing_record = Student.query.filter_by(netid_email=student_data['netid_email']).first()
 
-    return jsonify({'status': 'User saved'}), 201
+    if(existing_record):
+        existing_record.name = student_data['name']
+        existing_record.github = student_data['github']
+        existing_record.leetcode = student_data['leetcode']
+        existing_record.bio = student_data['bio']
+        existing_record.pfp_url = student_data['pfp_url']
+
+        db.session.commit()
+        db.session.close()
+        return jsonify({'status': 'User updated'}), 201
+
+
+    else:
+        # If the user doesn't exist, insert a new record
+        new_student = Student(**student_data)
+        db.session.add(new_student)
+
+        db.session.commit()
+        db.session.close()
+
+        return jsonify({'status': 'User added'}), 201
 
 
 # leetcode endpoint  
@@ -109,9 +125,15 @@ def add_user():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User added successfully!'}), 201
+
   
   
-  
+# Endpoint to add a new user to the database
+@app.route('/get_preferences', methods=['GET'])
+def get_preferences():
+    email = request.headers.get("netidemail")
+    student = Student.query.filter_by(netid_email=email).first()
+    return jsonify({'name': student.name, 'netid_email': student.netid_email, 'bio': student.bio, 'pfp_url': student.pfp_url, 'leetcode': student.leetcode, 'github': student.github})
   
   
 #student table turn in to JSON 
