@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy 
 import requests
-
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://Josephjj224:0j2VRcnTCPHv@ep-summer-dream-42168815.us-east-2.aws.neon.tech/CS222-91' 
@@ -111,6 +111,13 @@ def add_user():
     return jsonify({'message': 'User added successfully!'}), 201
   
   
+  
+# Endpoint to add a new user to the database
+@app.route('/get_preferences', methods=['GET'])
+def get_preferences():
+    email = request.headers.get("netidemail")
+    student = Student.query.filter_by(netid_email=email).first()
+    return jsonify({'name': student.name, 'netid_email': student.netid_email, 'bio': student.bio, 'pfp_url': student.pfp_url, 'leetcode': student.leetcode, 'github': student.github})
   
   
   
