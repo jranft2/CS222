@@ -5,21 +5,20 @@ import requests
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://Josephjj224:0j2VRcnTCPHv@ep-summer-dream-42168815.us-east-2.aws.neon.tech/CS222-91'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://Josephjj224:0j2VRcnTCPHv@ep-summer-dream-42168815.us-east-2.aws.neon.tech/CS222-91' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 db = SQLAlchemy(app)
 
 
-#student table def
+# User Model for Database
 class Student(db.Model):
-    netid_email = db.Column(db.String(120), primary_key=True, nullable=False, unique=True)
-    name = db.Column(db.String(80), nullable=False)
-    bio = db.Column(db.Text, nullable=True)
-    pfp_url = db.Column(db.String(255), nullable=True)
-    leetcode = db.Column(db.String(80), nullable=True)
-    github = db.Column(db.String(80), nullable=True)
-
+    name = db.Column(db.String(120), primary_key=True)
+    netid_email = db.Column(db.String(80), nullable=False, unique=True)
+    github = db.Column(db.String(120), nullable=True)
+    leetcode = db.Column(db.String(120), nullable=True)
+    bio = db.Column(db.String(120), nullable=True)
+    pfp_url = db.Column(db.String(120), nullable=True)
 
 class Enroll(db.Model):
     netid_email = db.Column(db.String(255), db.ForeignKey('student.netid_email'), primary_key=True)
@@ -46,7 +45,7 @@ def index():
     return '<h1>Hello from Flask!</h1>'
 
 #github endpoint
-@app.route('/github/<username>', methods=['GET'])
+@app.route('/github/<username>', methods=['POST'])
 def get_github_user(username):
     url = f'https://api.github.com/users/{username}'
     response = requests.get(url)
@@ -55,6 +54,28 @@ def get_github_user(username):
     else:
         return jsonify({'error': 'User not found'}), 404
     
+
+# save user details endpoint  
+@app.route('/save-user-details', methods=['POST'])
+def createuser():
+    student_data = {
+        'netid_email': request.headers.get("netidemail") or '',
+        'name': request.headers.get("name") or '',
+        'github': request.headers.get("github") or '',
+        'leetcode': request.headers.get("leetcode") or '',
+        'bio': request.headers.get("bio") or '',
+        'pfp_url': request.headers.get("pfpurl")or '',
+    }
+
+    # If the user doesn't exist, insert a new record
+    new_student = Student(**student_data)
+    db.session.add(new_student)
+
+    db.session.commit()
+    db.session.close()
+
+    return jsonify({'status': 'User saved'}), 201
+
 
 # leetcode endpoint  
 @app.route('/leetcode/<username>', methods=['GET'])
@@ -68,6 +89,16 @@ def get_leetcode_user(username):
 
 
 
+
+# Endpoint to search user based on email
+@app.route('/user/<int:user_email>', methods=['GET'])
+def get_user(user_email):
+    user = User.query.get(user_email)
+    if user:
+        return jsonify({'UIN': user.email, 'name': user.name, 'major': user.major})
+    else:
+        return jsonify({'error': 'User not found'}), 404
+    
 
 
 # Endpoint to add a new user to the database
@@ -88,7 +119,6 @@ def add_user():
 def get_students():
     students = Student.query.all()
     return jsonify([{'name': student.name, 'netid_email': student.netid_email, 'bio': student.bio, 'pfp_url': student.pfp_url, 'leetcode': student.leetcode, 'github': student.github} for student in students])
-
 
 
 
@@ -115,8 +145,6 @@ def get_majors():
 def get_studies():
     Studie = Studies.query.all()
     return jsonify([{'netid_email': st.netid_email, 'major_name': st.major_name, 'degree_type': st.degree_type } for st in Studie])
-
-
 
 
 
