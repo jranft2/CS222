@@ -1,8 +1,13 @@
 <template>
-    <h2>LeetCode </h2>
-    <h2 v-if="userInfo">Easy to Solve completed:{{ userInfo.easySolved }}</h2>
-    <h2 v-if="userInfo">Medium to Solve completed:{{ userInfo.mediumSolved }}</h2>
-    <h2 v-if="userInfo">Hard to Solve completed:{{ userInfo.hardSolved }}</h2>
+
+    <div class="flex items-center border-b mb-1.5 border-gray-300">
+        <img src="../assets/leetcode-logo.png" alt="LeetCode Icon" class="w-6 h-6 text-gray-600" />
+        <span class="ml-2">LeetCode</span>
+    </div>
+    <h1>Problems Completed</h1>
+    <h2 v-if="userInfo" class="pl-2">Easy:{{ userInfo.easySolved }}</h2>
+    <h2 v-if="userInfo" class="pl-2">Medium:{{ userInfo.mediumSolved }}</h2>
+    <h2 v-if="userInfo" class="pl-2">Hard:{{ userInfo.hardSolved }}</h2>
 
 </template>
 
@@ -11,13 +16,14 @@ export default {
     data() {
         return {
             userInfo: null,
+            username: "jranft2"
         }
     },
     props: {
         user:Object
     },
     async created() {
-        fetch(`http://172.22.154.189:8080//leetcode/jranft2`)
+        fetch(`https://leetcodestats.cyclic.app/${this.username}`)
             .then(response => response.json())
             .then(data => {
                 this.userInfo = data;

@@ -3,11 +3,11 @@
         <div class="tag">
             <LeetCode :user="user"/>
         </div>
-        <div class="tag">
-            <i class="fa-brands fa-github"></i>Github
+        <div class="tag col-span-2">
+            <Github :user="user" />
         </div>
-        <div class="tag">
-            <i class="fa-sharp fa-solid fa-screen-users"></i>Courses 
+        <div class="tag col-span-2">
+            <Courses :user="user"/>
         </div>
     </div> 
 </template>
@@ -15,9 +15,13 @@
 
 <script>
 import LeetCode from "./LeetCode.vue";
+import Github from "./Github.vue";
+import Courses from "./Courses.vue";
 export default {
     components: {
-        LeetCode
+        LeetCode,
+        Github,
+        Courses,
     },
   props: {
     user:Object,
